@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Submit Form</title>
+	<style>
+		form {
+			margin: 50px auto;
+			width: 50%;
+			text-align: center;
+		}
+		input {
+			padding: 10px;
+			margin: 10px;
+			width: 60%;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+		}
+		button {
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<form id="myForm">
+		<label for="firstName">First Name:</label><br>
+		<input type="text" id="firstName" name="firstName" required><br>
+		<label for="lastName">Last Name:</label><br>
+		<input type="text" id="lastName" name="lastName" required><br>
+		<label for="mobileNo">Mobile No.:</label><br>
+		<input type="tel" id="mobileNo" name="mobileNo" required><br>
+		<label for="email">Email Id:</label><br>
+		<input type="email" id="email" name="email" required><br>
+		<button type="submit">Submit</button>
+	</form>
+	
+	<script>
+		const form = document.getElementById('myForm');
+		
+		form.addEventListener('submit', function(event) {
+			event.preventDefault();
+			const formData = new FormData(form);
+			const data = {};
+			formData.forEach((value, key) => data[key] = value);
+			const jsonData = JSON.stringify(data);
+			localStorage.setItem('myData', jsonData);
+			alert('Data saved in local storage');
+			form.reset();
+		});
+	</script>
+</body>
+</html>
+
+
+
+
